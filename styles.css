@@ -93,6 +93,7 @@ li {
     text-align: center;
     border: none;
     color: #7342d6;
+    display: none;
 }
 
 .menu__backdrop {
@@ -106,11 +107,19 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
+    transition: all 300ms ease;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .menu--open .menu__backdrop {
-  display: flex;  
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu--open {
+    max-height: 100vh;
+    overflow-y: hidden;
 }
 
 .menu__links {
@@ -373,4 +382,12 @@ footer {
    padding: 0 8px; 
 }
 
-@media (max-width: 550px)
+@media (max-width: 550px) {
+    .nav__links {
+        display: none;
+    }
+
+    .btn__menu {
+        display: block;
+    }
+}
