@@ -1,30 +1,38 @@
 function renderBooks() {
-    const booksWrapper = document.querySelector('.books');
+  const booksWrapper = document.querySelector(".books");
 
-    const books = getBooks();
-    console.log(books)
+  const books = getBooks();
 
-    booksWrapper.innerHTML =
-    `<div class="book">
+  const booksHtml = books
+  .map((book) => {
+    return `<div class="book">
         <figure class="book__img--wrapper">
-        <img class="book__img" src="assets/atomic habits.jpg" alt="" />
+            <img class="book__img" src="${book.url}" alt="" />
         </figure>
-        <div class="book__title">Atomic Habits</div>
+        <div class="book__title">
+            ${book.title}
+        </div>
         <div class="book__ratings">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
         </div>
         <div class="book__price">
-         <span class="book__price--normal">$59.95</span> $14.95
+         <span class="book__price--normal">$${book.originalPrice}</span> $${book.salePrice}
         </div>
-    </div>`
+    </div>`;
+  })
+  .join("");
+console.log(booksHtml);
+
+booksWrapper.innerHTML = booksHtml;
+  // booksWrapper.innerHTML = ;
 }
 
 setTimeout(() => {
-    renderBooks();
+  renderBooks();
 });
 
 // FAKE DATA
@@ -33,7 +41,7 @@ function getBooks() {
     {
       id: 1,
       title: "Crack the Coding Interview",
-                url: "assets/crack the coding interview.png",
+      url: "assets/crack the coding interview.png",
       originalPrice: 49.95,
       salePrice: 14.95,
       rating: 4.5,
